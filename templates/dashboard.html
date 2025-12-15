@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Python Saya</title>
-
+    <title>Dashboard Interaktif</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
   </head>
   <body>
-    <div class="container">
-      <h1>Halo dari Flask!</h1>
-      <p>Halaman ini sudah terhubung dengan CSS dan JS.</p>
-      <button onclick="sapaUser()">Klik Saya</button>
+    <div class="dashboard-box" id="kotak-utama">
+      <h1 id="sapaan-waktu">Selamat Datang, <span id="nama-user">{{ nama }}</span>!</h1>
+
+      <p>Anda berhasil masuk ke area terproteksi dengan tampilan baru.</p>
+
+      <a href="{{ url_for('logout') }}" class="btn-logout">Keluar</a>
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

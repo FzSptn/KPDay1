@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login System</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+    <style>
+      /* CSS Tambahan untuk Posisi Ikon */
+      .password-wrapper {
+        position: relative;
+        width: 100%;
+      }
+
+      .password-wrapper input {
+        width: 100%;
+        padding: 12px;
+        padding-right: 40px; /* Ruang untuk ikon */
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .icon-mata {
+        position: absolute;
+        right: 15px; /* Posisi dari kanan */
+        top: 50%; /* Posisi tengah vertikal */
+        transform: translateY(-50%);
+
+        font-size: 16px; /* Ukuran ikon pas */
+        cursor: pointer;
+        color: #777; /* Warna abu-abu elegan */
+
+        z-index: 1000; /* Agar selalu di atas input */
+      }
+
+      /* Efek saat mouse diarahkan ke ikon */
+      .icon-mata:hover {
+        color: #333; /* Berubah jadi gelap saat disentuh */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-box" id="kotak-utama">
+      <h2>Silakan Login</h2>
+
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+
+      <form method="POST">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" name="username" required autocomplete="off" />
+        </div>
+
+        <div class="input-group">
+          <label>Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="passInput" name="password" required placeholder="Masukkan password..." />
+            <i class="fa-solid fa-eye icon-mata" id="eyeIcon" onclick="bukaTutupPassword()"></i>
+          </div>
+        </div>
+
+        <br />
+        <button type="submit" class="btn-login">Masuk</button>
+      </form>
+    </div>
+
+    <script>
+      // Fungsi untuk animasi Fade-in saat halaman dibuka
+      document.addEventListener("DOMContentLoaded", function () {
+        const kotak = document.getElementById("kotak-utama");
+        if (kotak) {
+          // Menambahkan sedikit delay agar transisi terasa
+          setTimeout(() => {
+            kotak.style.opacity = "1";
+            kotak.style.transform = "translateY(0)";
+          }, 50);
+        }
+      });
+
+      // Fungsi Buka Tutup Password
+      function bukaTutupPassword() {
+        var inputan = document.getElementById("passInput");
+        var ikon = document.getElementById("eyeIcon");
+
+        if (inputan.type === "password") {
+          inputan.type = "text";
+          ikon.classList.remove("fa-eye");
+          ikon.classList.add("fa-eye-slash");
+        } else {
+          inputan.type = "password";
+          ikon.classList.remove("fa-eye-slash");
+          ikon.classList.add("fa-eye");
+        }
+      }
+    </script>
+  </body>
+</html>

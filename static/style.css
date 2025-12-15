@@ -1,18 +1,183 @@
 body {
-  background-color: #f0f0f0;
-  font-family: Arial, sans-serif;
-  text-align: center;
-  padding-top: 50px;
+  font-family: sans-serif;
+  background-color: #f0f2f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
+.login-box,
+.dashboard-box {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+h2 {
+  color: #333;
+  margin-bottom: 25px;
+}
 h1 {
   color: #2c3e50;
 }
 
-button {
-  padding: 10px 20px;
-  background-color: #007bff;
+/* Style untuk Input Formulir */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #666;
+  font-size: 14px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* Penting agar padding tidak menambah lebar */
+}
+
+/* Style untuk Tombol */
+.btn-login {
+  width: 100%;
+  padding: 12px;
+  background-color: #1877f2;
   color: white;
   border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #166fe5;
+}
+
+.btn-logout {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #e74c3c;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+.btn-logout:hover {
+  background-color: #c0392b;
+}
+
+/* Style untuk Pesan Error/Alert */
+.alert {
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+.alert-error {
+  background-color: #fdecea;
+  color: #dc3545;
+  border: 1px solid #f5c6cb;
+}
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeeba;
+}
+.alert-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* 1. Persiapan Animasi Fade-In */
+/* Kondisi awal: Transparan dan agak ke bawah */
+.login-box,
+.dashboard-box {
+  /* opacity: 0;        <-- Beri tanda komentar atau HAPUS baris ini */
+  /* transform: translateY(20px); <-- HAPUS baris ini juga */
+
+  /* Biarkan transition tetap ada tidak masalah */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.box-muncul {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Styling untuk Ikon Mata di dalam Password */
+.password-container {
+  position: relative; /* Penting agar ikon bisa diposisikan absolut di dalamnya */
+  width: 100%;
+}
+
+.password-container input {
+  padding-right: 40px; /* Beri ruang di kanan agar teks tidak menabrak ikon */
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 18px;
+
+  /* PENYELAMAT: Memastikan ikon ada di lapisan paling atas */
+  z-index: 999;
+}
+
+/* Pastikan input tidak menabrak ikon */
+.password-container input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 45px; /* Memberi ruang agar teks tidak menimpa ikon */
+  box-sizing: border-box;
+}
+
+.toggle-password:hover {
+  color: #333;
+}
+
+/* Update bagian ini di static/style.css */
+
+.password-container {
+  position: relative;
+  width: 100%;
+}
+
+.password-container input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 45px; /* Beri ruang lebih di kanan agar teks tidak tertutup ikon */
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px; /* Jarak dari kanan */
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #aaa; /* Warna abu-abu soft */
+  font-size: 16px; /* Ukuran ikon */
+  z-index: 10; /* Pastikan ikon ada di lapisan paling atas agar bisa diklik */
+}
+
+.toggle-password:hover {
+  color: #333; /* Warna berubah saat disentuh mouse */
 }
